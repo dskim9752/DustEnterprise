@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>django-chartjs line chart demo</title>
+        <!--[if lte IE 8]>
+            <script src="{% static 'js/excanvas.js' %}"></script>
+        <![endif]-->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+    </head>
+    <body>
+        <h1>Some Line Charts loaded in Ajax!</h1>
+       <td>
+            <form action ="/choices/category/" method="post">{% csrf_token %}
+                <button name="buttons" value="1"> category1 </button>
+                <button name="buttons" value="2000"> category2 </button>
+            </form>
+        </td>
+
+
+        <canvas id="myChart" width="200" height="100">
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_f" %}', function(data) {
+                var ctx = $("#myChart").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'line', data: data
+                });
+            });
+        </script>
+    </canvas>
+    <td/>
+            <canvas id="myChart2" width="200" height="100">
+        <script type="text/javascript">
+            $.get('{% url "line_chart_json_m" %}', function(data) {
+                var ctx = $("#myChart2").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'line', data: data
+                });
+            });
+        </script>
+    </canvas>
+    </body>
+</html>

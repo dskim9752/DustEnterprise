@@ -1,0 +1,485 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html style="" class=" js no-touch">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Dust Business</title>
+
+			
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes" > -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">		
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0 , user-scalable=yes">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+		<!-- 현재시간 가져오기 javascript -->
+<script language="javascript"> 
+    function showClock(){
+        var currentDate = new Date();
+        var divClock = document.getElementById("divClock");
+         
+        var msg = "Current Time : "+ currentDate.getFullYear() +" / ";
+        msg += currentDate.getMonth()+" / ";
+        msg += currentDate.getDate()+" / ";
+        msg += currentDate.getHours()+" : ";
+        msg += currentDate.getMinutes()+" : ";
+        msg += currentDate.getSeconds()+"  ";
+         
+        divClock.innerText = msg;
+        setTimeout(showClock,1000);
+    }
+    
+    
+</script>
+
+	</head>
+	<body class="bd" style="" onload="showClock()">		
+		<div class="all_wrap">
+			<div class="section_top">
+				<div class="content_center">
+					<span class="text_inline_block text_top_low font_oswald_semi_bold text_white">&lt;Dust Business&gt;</span><br><br><br><br>
+					<div  id="divClock" class="clock text_inline_block text_middle font_oswald_regular text_white"><!-- ex) 2019년 10월 9일(수) 오후 3시 13분 -->
+					</div>
+					<div class="location">
+						<span class="text_inline_block text_middle font_oswald_regular text_white"> Location Selection : </span>
+						<span class="text_inline_block text_middle font_oswald_regular text_white "> 
+						<form action ="/choices/location/" method="post">{% csrf_token %}
+						<ul class="location_button_ul">
+					<li class="location_button_ul_li">
+                		<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Jongro </button>
+                	</li>
+					<li class="location_button_ul_li">
+                		<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="2"> Nowon </button>
+                	</li>
+                		</ul>
+           	 			</form>
+						</span><!-- ex) 2019년 10월 9일(수) 오후 3시 13분 -->
+					</div>
+					<div class="today_dust_check">
+						<span class="text_inline_block text_big font_oswald_semi_bold text_white"> Current Dust pm :</span>
+						<span class="text_inline_block text_big_row2 font_oswald_semi_bold text_white dust_pm10">&nbsp;</span>
+						<span class="text_inline_block text_big_row2 font_oswald_semi_bold text_white dust_status">&nbsp;</span><br><br><br>
+					</div>
+				</div>
+			</div><!-- section_top -->
+			<div class="section_line_top"></div>				
+			<div class="content_center">
+				<div class="today_dust_rank_title">
+					<span class="text_inline_block text_top_low font_oswald_semi_bold">★Today's product sales ranking</span><br>
+					<span class="text_inline_block text_middle font_oswald_regular">(Ranking of excellent sales items based on current fine dust measurement)</span>
+				</div>
+
+				<div class="today_dust_rank">
+					<ul class="today_dust_rank_ul">
+						<li class="today_dust_rank_ul_li">
+							<div class="today_dust_rank_ul_li_div">
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_num">1.</span>
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_title">Sporting goods</span><br>
+								<div class="rank_sex_age_div">
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_sex">male</span>
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_age">20s</span>
+								</div>
+								<span class="text_inline_block text_middle_low font_oswald_regular today_dust_rank_list_info">dust 87 Sales +89%</span><br>
+								<img src="{% static 'img/graph_01.png' %}" class="today_dust_rank_list_img">
+							</div>							
+						</li>
+
+						<li class="today_dust_rank_ul_li">
+							<div class="today_dust_rank_ul_li_div">
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_num">2.</span>
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_title">Sporting goods</span><br>
+								<div class="rank_sex_age_div">
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_sex">male</span>
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_age">20s</span>
+								</div>
+								<span class="text_inline_block text_middle_low font_oswald_regular today_dust_rank_list_info">dust 87 Sales +89%</span><br>
+								<img src="{% static 'img/graph_01.png' %}" class="today_dust_rank_list_img">
+							</div>							
+						</li>
+
+						<li class="today_dust_rank_ul_li">
+							<div class="today_dust_rank_ul_li_div">
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_num">3.</span>
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_title">Sporting goods</span><br>
+								<div class="rank_sex_age_div">
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_sex">male</span>
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_age">20s</span>
+								</div>
+								<span class="text_inline_block text_middle_low font_oswald_regular today_dust_rank_list_info">dust 87 Sales +89%</span><br>
+								<img src="{% static 'img/graph_01.png' %}" class="today_dust_rank_list_img">
+							</div>							
+						</li>
+
+
+						<li class="today_dust_rank_ul_li">
+							<div class="today_dust_rank_ul_li_div">
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_num">4.</span>
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_title">Sporting goods</span><br>
+								<div class="rank_sex_age_div">
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_sex">male</span>
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_age">20s</span>
+								</div>
+								<span class="text_inline_block text_middle_low font_oswald_regular today_dust_rank_list_info">dust 87 Sales +89%</span><br>
+								<img src="{% static 'img/graph_01.png' %}" class="today_dust_rank_list_img">
+							</div>							
+						</li>
+
+						<li class="today_dust_rank_ul_li">
+							<div class="today_dust_rank_ul_li_div">
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_num">5.</span>
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_title">Sporting goods</span><br>
+								<div class="rank_sex_age_div">
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_sex">male</span>
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_age">20s</span>
+								</div>
+								<span class="text_inline_block text_middle_low font_oswald_regular today_dust_rank_list_info">dust 87 Sales +89%</span><br>
+								<img src="{% static 'img/graph_01.png' %}" class="today_dust_rank_list_img">
+							</div>							
+						</li>
+
+						<li class="today_dust_rank_ul_li">
+							<div class="today_dust_rank_ul_li_div">
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_num">6.</span>
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_title">Sporting goods</span><br>
+								<div class="rank_sex_age_div">
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_sex">male</span>
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_age">20s</span>
+								</div>
+								<span class="text_inline_block text_middle_low font_oswald_regular today_dust_rank_list_info">dust 87 Sales +89%</span><br>
+								<img src="{% static 'img/graph_01.png' %}" class="today_dust_rank_list_img">
+							</div>							
+						</li>
+
+						<li class="today_dust_rank_ul_li">
+							<div class="today_dust_rank_ul_li_div">
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_num">7.</span>
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_title">Sporting goods</span><br>
+								<div class="rank_sex_age_div">
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_sex">male</span>
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_age">20s</span>
+								</div>
+								<span class="text_inline_block text_middle_low font_oswald_regular today_dust_rank_list_info">dust 87 Sales +89%</span><br>
+								<img src="{% static 'img/graph_01.png' %}" class="today_dust_rank_list_img">
+							</div>							
+						</li>
+
+						<li class="today_dust_rank_ul_li">
+							<div class="today_dust_rank_ul_li_div">
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_num">8.</span>
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_title">Sporting goods</span><br>
+								<div class="rank_sex_age_div">
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_sex">male</span>
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_age">20s</span>
+								</div>
+								<span class="text_inline_block text_middle_low font_oswald_regular today_dust_rank_list_info">dust 87 Sales +89%</span><br>
+								<img src="{% static 'img/graph_01.png' %}" class="today_dust_rank_list_img">
+							</div>							
+						</li>
+
+
+						<li class="today_dust_rank_ul_li">
+							<div class="today_dust_rank_ul_li_div">
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_num">9.</span>
+								<span class="text_inline_block text_top_low font_oswald_semi_bold today_dust_rank_list_title">Sporting goods</span><br>
+								<div class="rank_sex_age_div">
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_sex">male</span>
+									<span class="text_inline_block text_top_low_low font_oswald_semi_bold today_dust_rank_list_info_age">20s</span>
+								</div>
+								<span class="text_inline_block text_middle_low font_oswald_regular today_dust_rank_list_info">dust 87 Sales +89%</span><br>
+								<img src="{% static 'img/graph_01.png' %}" class="today_dust_rank_list_img">
+							</div>							
+						</li>
+					</ul>
+				</div>				
+			</div><!-- content_center -->
+
+
+
+
+
+			<div class="section_line"></div>
+
+
+
+			<div class="dust_graph">
+				<div class="content_center">
+					
+
+					<div class="dust_graph_title">
+						<span class="text_inline_block text_top_low font_oswald_semi_bold">★Dust<span class="font_oswald_regular text_top_low_low">X</span>sales graph statistics</span>
+					</div>
+
+
+					<div class="graph_data_info">
+						<span class="text_inline_block text_middle font_oswald_regular">※ Data Information: Two Districts of Seoul (Jongno-gu, Nowon-gu) 2018.04.01~2019.03.31</span>
+					</div>
+
+
+
+					<div class="product_button product_button_list">
+						<ul class="product_button_ul">
+							<form action ="/choices/category/" method="post">{% csrf_token %}
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="2"> Leisure Activity </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+							<li class="product_button_ul_li">
+								<button class="text_inline_block text_middle font_oswald_regular" name="buttons" value="1"> Leisure Goods </button>
+							</li>
+
+            			</form>
+						</ul>
+					</div><!-- product_button -->
+
+
+
+
+					<div class="product_graph">
+
+						<div class="product_name">
+							<span class="text_inline_block text_top_low font_oswald_semi_bold product_name_span">{{catnames.catname}}</span>
+						</div>
+						<div class="product_graph_info">
+							<ul class="product_graph_info_ul">
+								<li class="product_graph_info_ul_li graph_man">
+
+									<div class="sex_title">
+										<img src="{% static 'img/sex_man.png' %}" class="graph_sex_img" width="60px">
+										<span class="text_inline_block text_top_low font_oswald_semi_bold" style="vertical-align: middle;">MAN</span>
+									</div>
+
+
+									<div class="product_graph_age_list">
+										<div class="product_graph_age product_graph_man_20">
+										<canvas id="myChart" width="200" height="100">
+        								<script type="text/javascript">
+            								$.get('{% url "line_chart_json_m" %}', function(data) {
+                							var ctx = $("#myChart").get(0).getContext("2d");
+					               	 		new Chart(ctx, {
+   						                 		type: 'line', data: data
+       							         		});
+      								      	});
+      									</script>
+  									    </canvas>
+											<span class="text_inline_block text_top_low_low font_oswald_semi_bold">youth</span>
+										</div>
+
+										<div class="product_graph_age product_graph_man_30"><img src="{% static 'img/sample_circulation.png' %}" width="100%">
+											<br>
+											<span class="text_inline_block text_top_low_low font_oswald_semi_bold">middle-age</span>
+										</div>
+
+										<div class="product_graph_age product_graph_man_50"><img src="{% static 'img/sample_circulation.png' %}" width="100%">
+											<br>
+											<span class="text_inline_block text_top_low_low font_oswald_semi_bold">old-age</span>
+										</div>
+									</div>
+								</li>
+
+								<li class="product_graph_info_ul_li graph_woman">
+									<div class="sex_title">
+										<img src="{% static 'img/sex_woman.png' %}" class="graph_sex_img" width="60px">
+										<span class="text_inline_block text_top_low font_oswald_semi_bold" style="vertical-align: middle;">WOMAN</span>
+									</div>
+
+									<div class="product_graph_age_list">
+										<div class="product_graph_age product_graph_woman_20">
+										<canvas id="myChart2" width="200" height="100">
+        								<script type="text/javascript">
+            								$.get('{% url "line_chart_json_f" %}', function(data) {
+                							var ctx = $("#myChart2").get(0).getContext("2d");
+					               	 		new Chart(ctx, {
+   						                 		type: 'line', data: data
+       							         		});
+      								      	});
+      									</script>
+  									    </canvas>
+											<span class="text_inline_block text_top_low_low font_oswald_semi_bold">youth</span>
+										</div>
+
+										<div class="product_graph_age product_graph_woman_30"><img src="{% static 'img/sample_circulation.png' %}" width="100%">
+											<br>
+											<span class="text_inline_block text_top_low_low font_oswald_semi_bold">middle-age</span>
+										</div>
+
+										<div class="product_graph_age product_graph_woman_50"><img src="{% static 'img/sample_circulation.png' %}" width="100%">
+											<br>
+											<span class="text_inline_block text_top_low_low font_oswald_semi_bold">old-age</span>
+										</div>
+									</div>
+
+
+								</li>
+
+							</ul>
+						</div>
+
+					</div><!-- product_graph -->
+
+
+				</div>
+			</div>
+
+
+
+
+			<div class="section_line"></div>
+
+
+
+
+			<div class="data_info">
+				<div class="content_center">
+					<div class="card_info">
+						<div class="card_info_title" style="text-align:center;">
+							<span class="text_inline_block text_top_low_low font_oswald_semi_bold">&lt; 카드매출 데이터 정보 안내 &gt;</span>
+						</div>
+
+						<ul class="card_info_ul">
+							<li class="card_info_ul_li">
+								<span class="text_inline_block text_middle font_oswald_regular">
+									숙박 – 호텔, 모텔, 기타숙박<br>
+									레저용품 – 스포츠용품, 악기 및 음반<br>
+									레저업소 – 실내·외 레저 및 오락시설<br>
+									문화취미 – 동물원, 극장, 경기장<br>
+									가구 – 목재·철재가구<br>
+									전기 –  냉난방기구<br>
+									주방용구 – 주방기구 및 용품, 정수기<br>
+									연료판매 – 주유소, 가정용연료<br>
+									광학제품 – 사진기, 사진관
+								</span>
+							</li>
+
+							<li class="card_info_ul_li">
+								<span class="text_inline_block text_middle font_oswald_regular">
+									가전 – 가전, 가전용품<br>
+									유통업 – 백화점, 마트, 자동판매기<br>
+									의복 – 기성복, 양복, 내의<br>
+									직물 – 침구류, 커텐, 카페트<br>
+									신변잡화 – 가방, 신발, 시계<br>
+									서적문구 – 문구, 기자채, 서적<br>
+									사무통신 – 사무기기, 소프트웨어<br>
+									자동차판매 – 자동차, 오토바이<br>
+									자동차정비 – 정비, 세차, 견인서비스
+
+
+								</span>
+							</li>
+
+							<li class="card_info_ul_li">
+								<span class="text_inline_block text_middle font_oswald_regular">
+									의료기관 – 약국, 병원, 보건소<br>
+									보건위생 – 화장품, 목욕탕<br>
+									요식업소 – 카페, 음식점, 주점<br>
+									음료식품 – 농·수산식자재<br>
+									수리서비스 – 세탁소, 각종수리점
+
+
+								</span>
+							</li>
+						</ul>
+						
+					</div>
+
+				</div>
+			</div>
+
+
+		</div><!-- all_wrap -->
+
+			
+
+
+		
+    
+
+	
+
+		
+</body></html>
