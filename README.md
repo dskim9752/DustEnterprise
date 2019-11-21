@@ -4,33 +4,54 @@
 
 #### 1.	장고
 1-1. graphs폴더
+
 1-1-1. static폴더
+
 설명: 웹페이지 기능에 필요한 css, js, img 파일 저장
+
 1-1-2. templates폴더
+
 설명: 웹페이지 실행시 보이는 index.html 저장 view 역할 
+
 1-1-3. admin.py
+
 설명 : localhost:8000/admin 접속을 통하여 웹에서 model 정보 확인가능하게 해주는 역할
+
 1-1-4. models.py
+
 설명 : database의 테이블의 속성을 정의해주는 역할 
+
 1-1-5. urls.py 
+
 설명 : index.html의 view와 view.py의 controller 부분을 연결해주는 역할
+
 1-1-6. view.py
+
 설명 : controller의 기능을 하며 그래프등 각종 연산을 담당
 
 1-2. mysite폴더
+
 1-2-1. settings.py 
+
 설명 : 장고의 셋팅 설정 역할
+
 1-2-2. urls.py
+
 설명 : localhost:8000 실행시 graphs에 링크하게 해주는 역할
 
 1-3. db.sqlite3
+
 장고 model의 data를 저장하는 database
+
 1-4. manage.py
+
 설명: 실행하여 localhost에 테스트페이지를 보여주는 역할
+
 
 #### 2.	Datas
 Sample.csv
 설명 : 정제 완료된 데이터 저장폴더
+
 속성으로 id, STD_DD, MCT_CAT, SEX_CD, AGE_CD, USE_CNT, USE_AMT, PM10, PM25를 가짐
 
 #### 3.	섞는부분 
