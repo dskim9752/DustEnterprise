@@ -17,7 +17,7 @@ Sample.csv
 
 
 ## **빌드 가이드**
-1. 서울열린데이터광장 가입 후 서울시 일별 평균 대기오염도 정보 api 신청, 어디어디 가입 후 현재 미세먼지 api 신청
+1. 서울열린데이터광장 가입 후 서울시 일별 평균 대기오염도 정보 api 신청
 2. 매출 데이터 더미데이터 생성 혹은 다른 외부 데이터를 받아온 후 속성에 맞추어 저장
 3. 웹서버에 Django , Python, sqlitestudio 설치
 4. python pip install django-chartjs 설치
